@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>NTPUSU Regulatory Typesetting Tool</title>
+    <title>法規排版工具 - 國立臺北大學學生自治會</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.5/tocas.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.5/tocas.min.js"></script>
-    <link rel="stylesheet" href="law-style.css" />
+    <link rel="stylesheet" href="regulation-style.css" />
     <style type="text/css">
     html{--ts-accent-color:#00ADEA;}textarea#lawCodeShow,textarea#lawTextInput{height:200px;}
 	@media print {.no-print {display: none;}} @media screen {.no-screen {display: none;}}
@@ -26,8 +26,8 @@
 			<!-- preview mode: show tool name -->
 			<div class="no-print">
 				<div class="ts-center">
-					<div class="ts-header is-large">Regulatory Typesetting Tool</div>
-					<div class="ts-text is-secondary">National Taipei University Student Union</div>
+					<div class="ts-header is-large">法規排版工具</div>
+					<div class="ts-text is-secondary">國立臺北大學學生自治會</div>
 				</div>
 			</div>
 			<!-- print mode: show regulation title -->
@@ -40,16 +40,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Breadcrumb -->
-		<div class="ts-breadcrumb is-divided is-secondary no-print">
-			<a class="item" href="/">
-				<span class="ts-icon is-house-icon"></span>
-			</a>
-			<a class="item is-active">
-				Regulatory Typesetting
-			</a>
-		</div>
 		
 		<!-- Title & History Input Area grid -->
 		<div class="ts-grid mobile:is-stacked is-evenly-divided is-stretched no-print">
@@ -59,7 +49,7 @@
 				<div class="ts-content">
 					<div class="ts-wrap is-vertical">
 						<div class="ts-control is-wide">
-							<div class="label">Regulation title</div>
+							<div class="label">法規全稱</div>
 							<div class="content is-fluid">
 								<div class="ts-input">
 									<input type="text" id="lawTitleInput" />
@@ -67,10 +57,10 @@
 							</div>
 						</div>
 						<div class="ts-control is-wide">
-							<div class="label">Last modified</div>
+							<div class="label">最近異動</div>
 							<div class="content is-fluid">
 								<div class="ts-input">
-									<input type="text" placeholder="修正日期：Y年M月D日" value="日期：年月日" id="lawLMInput" />
+									<input type="text" value="○○日期：YYYY年m月d日" id="lawLMInput" />
 								</div>
 							</div>
 						</div>
@@ -82,7 +72,7 @@
 			<div class="column">
 				<div class="ts-content">
 					<div class="ts-input is-resizable">
-						<textarea placeholder="[History] Fill in the full history of the regulation here." id="lawHistoryInput"></textarea>
+						<textarea placeholder="[History] 在此處輸入法規完整沿革（建議使用西元紀年，每次修正為一個清單項目）。" id="lawHistoryInput"></textarea>
 					</div>
 				</div>
 			</div>
@@ -102,16 +92,16 @@
 		<div class="column">
 		<div class="ts-content">
 			<div class="ts-input is-resizable">
-				<textarea placeholder="[Content] Please follow the Formatting Guidelines and fill in the plain text of the regulation here." id="lawTextInput"></textarea>
+				<textarea placeholder="[Content] 請依據〈會網法規排版格式〉，在此貼上法規純文字。" id="lawTextInput"></textarea>
 			</div>
 			<div class="ts-space is-small"></div>
 			
 			<div class="ts-wrap">
 				<button class="ts-button is-outlined" data-toggle="lawFormat:is-visible">
-					Formatting Guidelines
+					會網法規排版格式
 				</button>
 				<button class="ts-button" onclick="formatLaw()">
-					Generate
+					產生 HTML 原始碼
 				</button>
 			</div>
 			
@@ -120,15 +110,16 @@
 			<!-- format guide window -->
 			<div class="ts-modal" data-name="lawFormat">
 				<div class="content">
-					<div class="ts-content is-padded" lang="zh-TW">
-						<p><b>編章節、條號</b>：不用縮排。</p>
-						<p><b>項</b>（及不分項條文）：每行前面加上一個全形空白「　」。</p>
-						<p><b>款、目</b>：以「一、」、「（一）」開頭。</p>
+					<div class="ts-content is-padded">
+						<p>章節標題、條號（含條旨，如有）、每一項、每一款、每一目都單獨成行。</p>
+						<p><b>編章節、條號</b>：請不要縮排。</p>
+						<p><b>項</b>（及不分項條文）：每行前面加上一個全形空白「<code>　</code>」。</p>
+						<p><b>款、目</b>：以「一、」、「（一）」開頭。「目」括號用全形。</p>
 					</div>
 					<div class="ts-divider"></div>
 					<div class="ts-content is-tertiary is-horizontally-padded">
 						<button class="ts-button" data-toggle="lawFormat:is-visible">
-							Close
+							關閉
 						</button>
 					</div>
 				</div>
@@ -142,7 +133,7 @@
 		<div class="column">
 		<div class="ts-content">
 			<div class="ts-input is-resizable">
-				<textarea placeholder="This will show you the results in markup language, please copy it and paste into our WordPress custom HTML block." id="lawCodeShow" disabled></textarea>
+				<textarea placeholder="按下左方按鈕後，此處會產生 HTML 原始碼，貼到 R-page [編輯資訊] - [詳細說明] 處即可。請於該處選擇 [HTML] 模式，並勿開啟「HTML編輯/預覽」。" id="lawCodeShow" disabled></textarea>
 			</div>
 			<div class="ts-space is-small"></div>
 			<button class="ts-button is-accent" onclick="copySourceCode()">
@@ -176,17 +167,17 @@
 		</div>-->
 		<div class="ts-content">
 			<div class="ts-text is-secondary is-center-aligned no-print">
-				by NTPU Student Judiciary, MPL-2.0 license / <a href="https://github.com/robertgelb/ntpusu-regulation-typesetting">Github</a><br />Style - <a href="https://v4.tocas-ui.com">Tocas UI</a><br />Favicon - <a href="https://v4.tocas-ui.com">Twemoji</a> (Twitter 2020, CC BY 4.0)
+				由學生法院在 2024 年開發，採用 MPL-2.0 授權，<a href="https://github.com/ntpusu/ntpusu-regulation-typesetting">開放原始碼</a><br />Style - <a href="https://v4.tocas-ui.com">Tocas UI</a> / Favicon - <a href="https://v4.tocas-ui.com">Twemoji</a> (Twitter 2020, CC BY 4.0)
 			</div>
 			<div class="ts-text is-tiny is-center-aligned no-screen">
-				國立臺北大學學生自治會法規排版工具（由學生法院提供）
+				這份 PDF 檔使用「國立臺北大學學生自治會法規排版工具」產生。
 			</div>
 		</div>
 		
 	</div>	
 	
 
-    <script src="law-formatter.js"></script>
+    <script src="regulation-formatter.js"></script>
 
 <!--</div> end content -->
 </div><!-- end container -->
