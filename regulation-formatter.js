@@ -11,13 +11,16 @@ function formatLaw() {
 	
 	const inputHist = document.getElementById('lawHistoryInput').value;
 	let outputHist = '<!-- History --> <div class="ts-header">沿革</div><div class="ts-content"><div class="ts-list is-ordered">\n';
+	let copiedHist = '<!-- History -->\n<h3><strong>沿革<strong></h3>\n';
 	if(inputHist !== null && inputHist !== '') {
 		const histLines = inputHist.split('\n');
 		histLines.forEach(histLine => {
 			outputHist += `\t<div class="item">\n\t\t${histLine}\n\t</div>\n`;
+            copiedHist += `\t<div class="item">\n\t\t${histLine}\n\t</div>\n`;
 		});
 	}
 	outputHist += '</div></div> <!-- end history --> \n';
+    copiedHist += '<!-- end History --> \n';
 	document.getElementById('lawHistoryPreview').innerHTML = outputHist;
     
 	// 法規內容
@@ -25,7 +28,7 @@ function formatLaw() {
 	
 	const inputText = document.getElementById('lawTextInput').value;
     const lines = inputText.split('\n');
-    let outputHtml = '<div class="regulation-content">\n';
+    let outputHtml = '<p class="ntpusuRegFmt-previewHide"><strong>法規全稱：'+inputTitle+'</strong>：</p>\n<p class="ntpusuRegFmt-previewHide">'+inputLastModified+'：</p>\n\n<div class="regulation-content">\n';
     let inTiao = false;
 
     lines.forEach(line => {
@@ -93,7 +96,7 @@ function formatLaw() {
 	
     outputHtml += '</div> <!-- end regulation content --> \n';
 
-    document.getElementById('lawCodeShow').value = outputHtml;
+    document.getElementById('lawCodeShow').value = outputHtml+copiedHist;
     document.getElementById('lawResultPreview').innerHTML = outputHtml;
 }
 

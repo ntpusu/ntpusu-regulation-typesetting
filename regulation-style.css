@@ -1,4 +1,8 @@
-/* For regulations */
+/* 
+  ==============================
+  Common settings for regulations 
+  ==============================
+*/
 
 /* Chapters */
 div.zhangJie { 
@@ -59,6 +63,16 @@ p.mu {
 	margin-left: 7em;
 	text-indent: -3em;
 	margin-top: 5px; margin-bottom: 5px;
+}
+
+/* 
+  ==============================
+  For THIS Typesetting Tool
+  ==============================
+*/
+
+p.ntpusuRegFmt-previewHide{
+	display: none;
 }
 
 /* Print */
