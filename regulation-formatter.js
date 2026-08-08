@@ -6,21 +6,23 @@ function formatLaw() {
 	
 	const inputTitle = document.getElementById('lawTitleInput').value;
 	const inputLastModified = document.getElementById('lawLMInput').value;
+	const lastModifiedType = inputLastModified.split('日期：')[0];
+	const lastModifiedZhDate = inputLastModified.split('日期：')[1];
     document.getElementById('lawTitlePrint').innerHTML = inputTitle;
     document.getElementById('lawLMPrint').innerHTML = inputLastModified;
 	
 	const inputHist = document.getElementById('lawHistoryInput').value;
 	let outputHist = '<!-- History --> <div class="ts-header">沿革</div><div class="ts-content"><div class="ts-list is-ordered">\n';
-	let copiedHist = '<!-- History -->\n<h3><strong>沿革<strong></h3>\n';
+	let copiedHist = '<!-- History -->\n<h3><strong>沿革<strong></h3>\n<ol>\n';
 	if(inputHist !== null && inputHist !== '') {
 		const histLines = inputHist.split('\n');
 		histLines.forEach(histLine => {
 			outputHist += `\t<div class="item">\n\t\t${histLine}\n\t</div>\n`;
-            copiedHist += `\t<div class="item">\n\t\t${histLine}\n\t</div>\n`;
+            copiedHist += `\t<li>\n\t\t${histLine}\n\t</li>\n`;
 		});
 	}
 	outputHist += '</div></div> <!-- end history --> \n';
-    copiedHist += '<!-- end History --> \n';
+    copiedHist += '</ol> <!-- end History --> \n';
 	document.getElementById('lawHistoryPreview').innerHTML = outputHist;
     
 	// 法規內容
@@ -28,7 +30,7 @@ function formatLaw() {
 	
 	const inputText = document.getElementById('lawTextInput').value;
     const lines = inputText.split('\n');
-    let outputHtml = '<p class="ntpusuRegFmt-previewHide"><strong>法規全稱：'+inputTitle+'</strong>：</p>\n<p class="ntpusuRegFmt-previewHide">'+inputLastModified+'：</p>\n\n<div class="regulation-content">\n';
+    let outputHtml = '<p><strong>法規全稱：</strong>'+inputTitle+'</p>\n<p><strong>'+lastModifiedType+'日期：</strong>'+lastModifiedZhDate+'</p>\n\n<div class="regulation-content">\n';
     let inTiao = false;
 
     lines.forEach(line => {
