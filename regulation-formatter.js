@@ -13,7 +13,7 @@ function formatLaw() {
 	
 	const inputHist = document.getElementById('lawHistoryInput').value;
 	let outputHist = '<!-- History --> <div class="ts-header">沿革</div><div class="ts-content"><div class="ts-list is-ordered">\n';
-	let copiedHist = '<!-- History -->\n<h3><strong>沿革<strong></h3>\n<ol>\n';
+	let copiedHist = '<!-- History -->\n<h3><strong>沿革</strong></h3>\n<ol>\n';
 	if(inputHist !== null && inputHist !== '') {
 		const histLines = inputHist.split('\n');
 		histLines.forEach(histLine => {
